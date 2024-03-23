@@ -22,6 +22,7 @@ from transformers import set_seed
 from transformers import HfArgumentParser, TrainingArguments
 from trl import SFTTrainer
 from utils import create_and_prepare_model, create_datasets, loftq_init
+import wandb
 
 
 # Define and parse arguments.
@@ -136,6 +137,8 @@ class DataTrainingArguments:
 def main(model_args, data_args, training_args):
     # Set seed for reproducibility
     set_seed(training_args.seed)
+    wandb.login()
+    os.environ["WANDB_PROJECT"] = "test"
 
     # model
     model, peft_config, tokenizer = create_and_prepare_model(
