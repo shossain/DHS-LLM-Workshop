@@ -5,7 +5,7 @@ accelerate launch --config_file "configs/deepspeed_zeropp_lora_config.yaml"  tra
 --chat_template_format "chatml" \
 --add_special_tokens False \
 --append_concat_token False \
---splits "train_sft,test_sft" \
+--splits "train" \
 --report_to "wandb" \
 --max_seq_len 2048 \
 --num_train_epochs 1 \
@@ -30,14 +30,11 @@ accelerate launch --config_file "configs/deepspeed_zeropp_lora_config.yaml"  tra
 --gradient_accumulation_steps 4 \
 --gradient_checkpointing True \
 --use_reentrant False \
---dataset_text_field "content" \
+--dataset_text_field "text" \
 --use_flash_attn True \
 --use_peft_lora True \
 --lora_r 8 \
 --lora_alpha 16 \
 --lora_dropout 0.1 \
 --lora_target_modules "q_proj,k_proj,v_proj,o_proj,down_proj,up_proj,gate_proj,embed_tokens,lm_head" \
---use_4bit_quantization True \
---use_nested_quant True \
---bnb_4bit_compute_dtype "bfloat16" \
---bnb_4bit_quant_storage_dtype "bfloat16"
+--use_4bit_quantization False
