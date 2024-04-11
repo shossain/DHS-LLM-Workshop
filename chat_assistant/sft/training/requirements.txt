@@ -9,3 +9,5 @@ datasets
 einops
 wandb
 tiktoken
+mamba-ssm 
+causal-conv1d
