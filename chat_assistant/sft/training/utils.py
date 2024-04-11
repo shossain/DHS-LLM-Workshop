@@ -90,10 +90,18 @@ def create_datasets(tokenizer, data_args, training_args, apply_chat_template=Fal
         )
 
     train_data = raw_datasets["train"]
-    valid_data = raw_datasets["test"]
+    valid_data = None
+    if "test" in raw_datasets:
+        valid_data = raw_datasets["test"]
+
     print(
-        f"Size of the train set: {len(train_data)}. Size of the validation set: {len(valid_data)}"
+        f"Size of the train set: {len(train_data)}."
     )
+
+    if valid_data:
+        print(
+            f"Size of the validation set: {len(valid_data)}"
+        )
     print(f"A sample of train dataset: {train_data[0]}")
 
     return train_data, valid_data
